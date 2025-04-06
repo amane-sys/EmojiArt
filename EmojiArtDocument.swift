@@ -29,7 +29,6 @@ class EmojiArtDocument: ObservableObject {
     func setBackground(_ url: URL?) {
         print("背景：\(url?.absoluteString ?? "なし")")
         emojiArt.background = url
-        objectWillChange.send() 
     }
     
     func addEmoji(_ emoji: String, at position: Emoji.Position, size: CGFloat) {

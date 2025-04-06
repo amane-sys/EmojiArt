@@ -9,9 +9,9 @@ import SwiftUI
 
 struct EmojiArtDocumentView: View {
     typealias Emoji = EmojiArt.Emoji
+    
     @ObservedObject var document: EmojiArtDocument
-    
-    
+
     private let emojis = "🐻💥🛌⛹🔊🚢🚢🎱🚢📈🚢🚋😀😂🤣😍🥰😎🤩😜🤔😱🙌🔥🚀🌈⭐️💡🎉🎶💖"
     private let paletteEmojiSize: CGFloat = 40
     
@@ -24,6 +24,7 @@ struct EmojiArtDocumentView: View {
                 .scrollIndicators(.hidden)
         }
     }
+    
     private var documentBody: some View {
         GeometryReader { geometry in
             ZStack {
@@ -38,15 +39,15 @@ struct EmojiArtDocumentView: View {
             }
             .dropDestination(for: Sturldata.self) { sturldatas, location in
                 for sturldata in sturldatas {
-                        if case .url(let url) = sturldata, !url.pathExtension.lowercased().contains("jpg") {
-                            print("⚠️ 可能是网页缩略图链接：\(url.absoluteString)")
-                        }
+                    if case .url(let url) = sturldata, !url.pathExtension.lowercased().contains("jpg") {
+                        print("⚠️ 可能是网页缩略图链接：\(url.absoluteString)")
                     }
+                }
                 return drop(sturldatas, at: location, in: geometry)
             }
         }
-        
     }
+    
     private func drop(_ sturldatas: [Sturldata], at location: CGPoint, in geometry: GeometryProxy) -> Bool {
         print("Dropped items: \(sturldatas)")
         for sturldate in sturldatas {
@@ -63,7 +64,7 @@ struct EmojiArtDocumentView: View {
                             in: geometry
                         ),
                         size: paletteEmojiSize
-                )
+                    )
                 return true
             default:
                 break
@@ -80,9 +81,6 @@ struct EmojiArtDocumentView: View {
         )
     }
 }
-
-
-
 
 struct ScrollingEmojis: View {
     let emojis: [String]
