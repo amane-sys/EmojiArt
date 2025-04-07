@@ -11,9 +11,8 @@ class EmojiArtDocument: ObservableObject {
     typealias Emoji = EmojiArt.Emoji
     @Published private var emojiArt = EmojiArt()
     
-    init() {
-        emojiArt.addEmoji("🚢", at: .init(x: 0, y: -200), size: 100)
-        emojiArt.addEmoji("🚀", at: .init(x: 0, y: 0), size: 100)
+    init(initialEmoji: [Emoji] = [], background: URL? = nil) {
+        self.emojiArt = EmojiArt(background: background, emojis: initialEmoji)
     }
     
     var emojis: [Emoji] {
@@ -27,7 +26,6 @@ class EmojiArtDocument: ObservableObject {
     // MARK: - Intent(s)
     
     func setBackground(_ url: URL?) {
-        print("背景：\(url?.absoluteString ?? "なし")")
         emojiArt.background = url
     }
     

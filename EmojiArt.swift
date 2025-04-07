@@ -11,6 +11,14 @@ struct EmojiArt {
     var background: URL?
     private(set) var emojis = [Emoji]()
     
+    init(
+        background: URL? = nil,
+        emojis: [EmojiArt.Emoji] = [Emoji]()
+    ) {
+        self.background = background
+        self.emojis = emojis
+    }
+    
     private var uniqueEmojiId = 0
     
     mutating func addEmoji(_ emoji: String, at position: Emoji.Position, size: Int) {
