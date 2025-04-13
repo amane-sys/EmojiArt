@@ -40,6 +40,14 @@ extension EmojiArt.Emoji {
     }
 }
 
+func convertToCanvasPoint(position: EmojiArt.Emoji.Position, inCavasSize size: CGSize) -> CGPoint {
+    let center = CGPoint(x: size.width / 2, y: size.height / 2)
+    return CGPoint(
+        x: center.x + CGFloat(position.x),
+        y: center.y - CGFloat(position.y)
+    )
+}
+
 extension EmojiArt.Emoji.Position {
     func `in`(_ geometry: GeometryProxy) -> CGPoint {
         let center = geometry.frame(in: .local).center
